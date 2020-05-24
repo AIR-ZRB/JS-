@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            let foo = {
+                value: 1,
+                values: 2,
+            };
+            function bar() {
+                console.log(this.value);
+            }
+
+
+            Function.prototype.myCall = function(target){
+                target = target || window;
+                target.fn = this;
+                const args = [...arguments].slice(1);
+                const result = target.fn(...args);
+                delete target.fn;
+                return result;
+            }
+            bar.myCall(foo); // 1
+        </script>
+    </body>
+</html>
