@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("调用myIsArray方法传入参数即可" );
+        function myIsArray(arg){
+            return Object.prototype.toString.call(arg) === "[object Array]" ? true : false;
+        }
+
+    </script>
+</body>
+</html>
