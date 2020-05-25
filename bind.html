@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            var obj = {
+                value: 2,
+            };
+            function test(arr){
+                console.log(...arr);
+                console.log(this.value);
+            }
+
+            Function.prototype.myBind = function(target) {
+                // console.log(this.value);
+                target = target || window;
+                target.fn = this;
+                return function(){
+                    const args = [...arguments];
+                    target.fn(...args);
+                    delete target.fn;
+                }
+
+            }
+
+            const aa = test.myBind(obj);
+            aa([1,2,3]);
+            // myBind.bind(obj)(112312,12321);
+
+        </script>
+    </body>
+</html>
