@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            value: 3
+        }
+
+        function test(sum) {
+            console.log(this.value)
+        }
+
+        Function.prototype.myApply = function(target){
+            target = target || window;
+            target.fn = this;
+            const argsArr = arguments[1];
+            console.log()
+            arguments[1] ? target.fn(...argsArr): target.fn();
+            delete target.fn;
+        }
+
+
+        function sum(a,b){
+            console.log(a+b);
+            console.log(this.value)
+        }
+        sum.myApply(obj,[5,6])
+
+
+    </script>
+</body>
+</html>
